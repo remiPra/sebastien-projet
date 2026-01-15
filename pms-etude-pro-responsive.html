@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions PMS Hôtelières 2026 - Étude Complète (Responsive)</title>
+
+  <!--
+    Version responsive + design bleu & doré.
+    - Tables: bascule auto en "cartes" sur mobile (sans modifier toutes les cellules à la main)
+    - Grille: sections + cards plus élégantes
+    - Accessibilité: contrastes, focus visibles
+  -->
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --surface: rgba(255,255,255,.08);
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.14);
+
+      --blue-1:#0a3a5a;     /* navy */
+      --blue-2:#1e5f8f;     /* cobalt */
+      --blue-3:#4aa3df;     /* light */
+      --gold:#d4af37;       /* gold */
+      --gold-2:#f0cf6b;
+      --accent:#ff6b35;     /* CTA orange (kept for energy) */
+      --good:#27ae60;
+      --warn:#ffb020;
+
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --shadow-soft: 0 10px 22px rgba(0,0,0,.18);
+
+      --max: 1180px;
+      --pad: clamp(16px, 2.5vw, 28px);
+      --pad-lg: clamp(20px, 3.5vw, 44px);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.6;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(74,163,223,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(212,175,55,.25), transparent 55%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(30,95,143,.28), transparent 60%),
+        var(--bg);
+    }
+
+    a{ color: var(--gold-2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: var(--pad-lg) var(--pad); }
+
+    /* Header / Hero */
+    header{
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      overflow:hidden;
+      background: linear-gradient(135deg, rgba(30,95,143,.90), rgba(10,58,90,.92) 55%, rgba(11,18,32,.95));
+      box-shadow: var(--shadow);
+    }
+    .hero{
+      padding: clamp(26px, 5vw, 56px) clamp(18px, 4vw, 56px);
+      display:grid;
+      gap: 18px;
+    }
+    .hero-top{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .brand .logo{
+      width:44px;height:44px;
+      border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, rgba(240,207,107,.95), rgba(212,175,55,.4) 45%, rgba(255,255,255,.06) 70%);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    .meta-pill{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4.6vw, 54px);
+      line-height: 1.07;
+      letter-spacing: -0.6px;
+    }
+    .hero p{
+      margin:0;
+      max-width: 70ch;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(15px, 1.7vw, 19px);
+    }
+    .hero .answer{
+      margin-top: 10px;
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(240,207,107,.35);
+      background: linear-gradient(135deg, rgba(212,175,55,.18), rgba(255,255,255,.06));
+      color: rgba(255,255,255,.90);
+      width: fit-content;
+    }
+    .spark{
+      display:inline-block;
+      width: 10px; height: 10px; border-radius: 99px;
+      background: var(--gold-2);
+      box-shadow: 0 0 0 6px rgba(240,207,107,.18);
+    }
+
+    /* Sticky quick nav */
+    .topnav{
+      position: sticky;
+      top: 12px;
+      z-index: 30;
+      margin-top: 18px;
+    }
+    .topnav-inner{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(11,18,32,.58);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft);
+    }
+    .navlink{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      font-weight:600;
+      font-size: .95rem;
+      white-space:nowrap;
+    }
+    .navlink:hover{
+      text-decoration:none;
+      border-color: rgba(240,207,107,.35);
+      background: rgba(212,175,55,.10);
+    }
+
+    /* Section shells */
+    .section{
+      margin-top: 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      box-shadow: var(--shadow-soft);
+      overflow:hidden;
+    }
+    .section-head{
+      padding: 18px var(--pad);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(30,95,143,.25), rgba(212,175,55,.08), rgba(255,255,255,0));
+    }
+    .section-head h2{
+      margin:0;
+      font-size: clamp(18px, 2.6vw, 28px);
+      letter-spacing:-.2px;
+      color: rgba(255,255,255,.94);
+    }
+    .section-body{ padding: var(--pad); }
+
+    .kpi{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .kpi b{ color: var(--gold-2); }
+
+    /* Cards */
+    .card{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      padding: 18px;
+    }
+    .card + .card{ margin-top: 14px; }
+
+    .solution-card{
+      border-left: 4px solid var(--gold);
+      position:relative;
+      overflow:hidden;
+    }
+    .solution-card:before{
+      content:"";
+      position:absolute;
+      inset:-60px -80px auto auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(240,207,107,.25), transparent 65%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .solution-title{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .solution-title h3{
+      margin:0;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: rgba(255,255,255,.96);
+      letter-spacing:-.2px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .15px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.88);
+    }
+    .badge.premium{ border-color: rgba(240,207,107,.45); background: rgba(212,175,55,.12); }
+    .badge.budget{ border-color: rgba(39,174,96,.45); background: rgba(39,174,96,.10); }
+    .badge.star{ border-color: rgba(74,163,223,.55); background: rgba(30,95,143,.18); }
+
+    .muted{ color: var(--muted); }
+
+    /* Lists */
+    .feature-list{
+      list-style:none;
+      margin: 14px 0 0 0;
+      padding:0;
+      display:grid;
+      gap: 10px;
+    }
+    .feature-list li{
+      position:relative;
+      padding-left: 30px;
+      color: rgba(255,255,255,.86);
+    }
+    .feature-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0; top: 0;
+      color: var(--good);
+      font-weight: 900;
+    }
+    .feature-list li.negative::before{
+      content:"⚠";
+      color: var(--warn);
+    }
+
+    /* Tables (desktop default) */
+    .table-wrap{
+      width:100%;
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      margin: 14px 0;
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px; /* enables horizontal scroll on small screens before card mode kicks in */
+    }
+    th, td{
+      padding: 14px 14px;
+      text-align:left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      font-size: .97rem;
+    }
+    th{
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, rgba(30,95,143,.85), rgba(10,58,90,.85));
+      color: rgba(255,255,255,.96);
+      font-weight: 800;
+      letter-spacing: .15px;
+      z-index: 1;
+    }
+    tr:hover td{ background: rgba(240,207,107,.05); }
+
+    /* Mobile table -> cards */
+    @media (max-width: 720px){
+      table{ min-width: 100%; }
+      .table-wrap{
+        border: none;
+        background: transparent;
+        overflow: visible;
+      }
+      table, thead, tbody, th, tr { display:block; }
+      thead{ display:none; }
+      tr{
+        border: 1px solid rgba(255,255,255,.14);
+        background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+        border-radius: 14px;
+        overflow:hidden;
+        margin: 12px 0;
+        box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      }
+      td{
+        display:flex;
+        gap: 10px;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,.10);
+        padding: 12px 14px;
+        font-size: .98rem;
+      }
+      td:last-child{ border-bottom: none; }
+      td::before{
+        content: attr(data-label);
+        font-weight: 800;
+        color: rgba(255,255,255,.86);
+        max-width: 45%;
+      }
+      td{
+        color: rgba(255,255,255,.82);
+      }
+    }
+
+    /* Price box */
+    .price-box{
+      margin-top: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(240,207,107,.22);
+      background: linear-gradient(135deg, rgba(212,175,55,.14), rgba(255,255,255,.06));
+      padding: 16px;
+    }
+    .price-box strong{ color: var(--gold-2); font-size: 1.08em; }
+    .price-total{ color: rgba(255,255,255,.95); font-weight: 900; }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      letter-spacing: .1px;
+      cursor:pointer;
+      text-decoration:none;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0,0,0,.22);
+      text-decoration:none;
+      border-color: rgba(240,207,107,.35);
+      background: rgba(212,175,55,.12);
+    }
+    .btn.primary{
+      border: 1px solid rgba(255,107,53,.35);
+      background: linear-gradient(135deg, rgba(255,107,53,.95), rgba(255,140,90,.95));
+      color: #101622;
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(255,140,90,.96), rgba(255,107,53,.96));
+      border-color: rgba(255,140,90,.55);
+    }
+    .btn.ghost{
+      background: rgba(11,18,32,.35);
+    }
+
+    /* Proof chips */
+    .proof-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .proof{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      padding: 14px;
+    }
+    .proof strong{
+      display:block;
+      font-size: 1.25rem;
+      color: var(--gold-2);
+      margin-bottom: 4px;
+    }
+
+    /* Comparison grid */
+    .comparison-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    /* Video */
+    .video{
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      box-shadow: var(--shadow-soft);
+      margin-top: 14px;
+    }
+    .video iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    /* ROI box */
+    .roi{
+      border-radius: 16px;
+      border: 1px solid rgba(74,163,223,.30);
+      background: linear-gradient(180deg, rgba(30,95,143,.18), rgba(255,255,255,.06));
+      padding: 16px;
+    }
+    label{
+      display:block;
+      font-weight:800;
+      color: rgba(255,255,255,.90);
+      margin: 14px 0 8px;
+    }
+    input{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(11,18,32,.55);
+      color: rgba(255,255,255,.92);
+      font-size: 1rem;
+      outline:none;
+    }
+    input:focus{
+      border-color: rgba(240,207,107,.45);
+      box-shadow: 0 0 0 6px rgba(240,207,107,.15);
+    }
+    .result{
+      margin-top: 14px;
+      display:none;
+      border-radius: 16px;
+      border: 1px solid rgba(39,174,96,.35);
+      background: rgba(39,174,96,.10);
+      padding: 14px;
+    }
+    .result.show{ display:block; }
+
+    /* Footer */
+    footer{
+      margin-top: 26px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding: 18px;
+      color: rgba(255,255,255,.78);
+      text-align:center;
+    }
+
+    /* Small tweaks */
+    .lead{ font-size: 1.05rem; color: rgba(255,255,255,.86); }
+    .hr{
+      height:1px; background: rgba(255,255,255,.12);
+      margin: 12px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header id="top">
+      <div class="hero">
+        <div class="hero-top">
+          <div class="brand">
+            <span class="logo" aria-hidden="true"></span>
+            <span>Étude PMS Hôtelière • 2026</span>
+          </div>
+          <div class="meta-pill">
+            <span class="pill">🏨 Univers hôtelier</span>
+            <span class="pill">🎛️ PMS • Channel • RMS</span>
+            <span class="pill">🗓️ 15 janvier 2026</span>
+          </div>
+        </div>
+
+        <h1>Solutions PMS Hôtelières 2026</h1>
+        <p>Étude complète : quelles solutions existent pour équiper tes hôtels avec un PMS moderne (multi‑sites, check‑in web, clé mobile sans friction, automatisations, avis clients, channel manager, revenue management) ?</p>
+        <div class="answer">
+          <span class="spark" aria-hidden="true"></span>
+          <span><b>Réponse claire :</b> oui, tout ce que tu veux existe déjà — la vraie question est <b>laquelle choisir</b>.</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="topnav" aria-label="Navigation rapide">
+      <div class="topnav-inner">
+        <a class="navlink" href="#question">🎯 Question</a>
+        <a class="navlink" href="#solutions">✅ Solutions</a>
+        <a class="navlink" href="#preuves">🎖️ Preuves</a>
+        <a class="navlink" href="#comparaison">📊 Comparaison</a>
+        <a class="navlink" href="#roi">🧮 ROI</a>
+        <a class="navlink" href="#videos">📹 Vidéos</a>
+        <a class="navlink" href="#reco">🏆 Reco</a>
+        <a class="navlink" href="#sources">📚 Sources</a>
+      </div>
+    </nav>
+
+    <!-- SECTION 1 -->
+    <section class="section" id="question">
+      <div class="section-head">
+        <h2>🎯 Ta question</h2>
+        <div class="kpi">Objectif : <b>solution tout‑en‑un</b> + expérience client <b>sans friction</b></div>
+      </div>
+      <div class="section-body">
+        <p class="lead"><b>“Est‑ce qu’il existe des solutions complètes qui font TOUT ce que je veux ?”</b></p>
+        <div class="card" style="margin-top:14px;">
+          <div class="muted" style="font-weight:800; margin-bottom:8px;">Ton cahier des charges :</div>
+          <ul class="feature-list">
+            <li>IA compatible ou intégré</li>
+            <li>Check‑in / check‑out online</li>
+            <li>Ouverture des serrures avec mobile <b>sans téléchargement d’app</b></li>
+            <li>Gestion multi‑sites (plusieurs hôtels)</li>
+            <li>Gestion clients (emails, relances, avis)</li>
+            <li>Attribution des chambres automatique</li>
+            <li>Channel manager</li>
+            <li>Revenue management</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="section" id="solutions">
+      <div class="section-head">
+        <h2>✅ Réponse : oui, ça existe</h2>
+        <div class="kpi"><b>3 solutions</b> qui cochent (pratiquement) toutes les cases</div>
+      </div>
+      <div class="section-body">
+
+        <!-- MEWS -->
+        <article class="card solution-card">
+          <div class="solution-title">
+            <h3>🥇 MEWS</h3>
+            <span class="badge premium">Premium</span>
+          </div>
+          <p class="muted"><b>Site officiel :</b> <a href="https://www.mews.com" target="_blank" rel="noreferrer">mews.com</a></p>
+
+          <div class="table-wrap" role="region" aria-label="Table fonctionnalités Mews" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fonctionnalité</th>
+                  <th>Statut</th>
+                  <th>Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>IA compatible/intégré</td><td>✅ OUI</td><td>API ouverte + IA Smart Tips</td></tr>
+                <tr><td>Check‑in/out online</td><td>✅ OUI</td><td>Lien SMS, signature digitale, scan ID</td></tr>
+                <tr><td>Clé mobile sans app</td><td>✅ INCLUS</td><td>Mews Digital Key (lien web)</td></tr>
+                <tr><td>Gestion multi‑sites</td><td>✅ OUI</td><td>Plans Portfolio & Brand</td></tr>
+                <tr><td>Gestion clients/avis</td><td>✅ OUI</td><td>Emails auto, CRM intégré</td></tr>
+                <tr><td>Attribution chambres auto</td><td>✅ OUI</td><td>Règles automatiques</td></tr>
+                <tr><td>Channel manager</td><td>✅ INCLUS</td><td>Booking, Expedia, Airbnb, 350+ canaux</td></tr>
+                <tr><td>Revenue management</td><td>⚠️ Add‑on</td><td>Atomize RMS (200‑400€/mois)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="price-box">
+            <div style="font-weight:900; margin-bottom:6px;">💰 Prix estimé (hôtel 30 chambres)</div>
+            <div>PMS Plan Advanced : <strong>360€/mois</strong></div>
+            <div>Atomize RMS : <strong>+300€/mois</strong></div>
+            <div class="hr"></div>
+            <div class="price-total">TOTAL : ~660€/mois (≈ 7 900€/an)</div>
+          </div>
+
+          <div class="comparison-grid" style="margin-top:14px;">
+            <div class="card" style="background: rgba(39,174,96,.10); border-color: rgba(39,174,96,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⭐ Points forts</div>
+              <ul class="feature-list">
+                <li>Interface moderne (expérience “tech‑forward”)</li>
+                <li>Digital Key incluse (réduit la friction)</li>
+                <li>Marketplace d’intégrations très large</li>
+                <li>Support 24/7</li>
+              </ul>
+            </div>
+            <div class="card" style="background: rgba(255,176,32,.10); border-color: rgba(255,176,32,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⚠️ Points faibles</div>
+              <ul class="feature-list">
+                <li class="negative">Plus cher</li>
+                <li class="negative">Revenue management en add‑on</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="https://www.mews.com/en/pricing" target="_blank" rel="noreferrer">Voir les tarifs Mews</a>
+            <a class="btn ghost" href="https://www.youtube.com/watch?v=hHxawocmyyw" target="_blank" rel="noreferrer">Voir la démo vidéo</a>
+          </div>
+        </article>
+
+        <!-- CLOUDBEDS -->
+        <article class="card solution-card" style="border-left-color: rgba(74,163,223,.95);">
+          <div class="solution-title">
+            <h3>🥈 CLOUDBEDS</h3>
+            <span class="badge star">Meilleur rapport qualité/prix</span>
+          </div>
+          <p class="muted"><b>Site officiel :</b> <a href="https://www.cloudbeds.com" target="_blank" rel="noreferrer">cloudbeds.com</a></p>
+
+          <div class="table-wrap" role="region" aria-label="Table fonctionnalités Cloudbeds" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fonctionnalité</th>
+                  <th>Statut</th>
+                  <th>Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>IA compatible/intégré</td><td>✅ OUI</td><td>API ouverte + IA pricing (PIE)</td></tr>
+                <tr><td>Check‑in/out online</td><td>✅ OUI</td><td>Digital check‑in complet</td></tr>
+                <tr><td>Clé mobile sans app</td><td>⚠️ Add‑on</td><td>Via Canary (50‑100€/mois)</td></tr>
+                <tr><td>Gestion multi‑sites</td><td>✅ OUI</td><td>Gestion centralisée</td></tr>
+                <tr><td>Gestion clients/avis</td><td>✅ OUI</td><td>CRM, emails auto</td></tr>
+                <tr><td>Attribution chambres auto</td><td>✅ OUI</td><td>Règles + housekeeping</td></tr>
+                <tr><td>Channel manager</td><td>✅ INCLUS</td><td>350+ canaux OTA</td></tr>
+                <tr><td>Revenue management</td><td>✅ INCLUS</td><td>PIE avec IA (inclus)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="price-box">
+            <div style="font-weight:900; margin-bottom:6px;">💰 Prix estimé (hôtel 30 chambres)</div>
+            <div>Plan Professional : <strong>500€/mois</strong></div>
+            <div>Clé mobile (Canary) : <strong>+60€/mois</strong></div>
+            <div class="hr"></div>
+            <div class="price-total">TOTAL : ~560€/mois (≈ 6 720€/an)</div>
+          </div>
+
+          <div class="comparison-grid" style="margin-top:14px;">
+            <div class="card" style="background: rgba(39,174,96,.10); border-color: rgba(39,174,96,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⭐ Points forts</div>
+              <ul class="feature-list">
+                <li><b>Revenue management IA inclus</b> (économie potentielle)</li>
+                <li>Tout‑en‑un très complet</li>
+                <li>Facile à déployer (formation rapide)</li>
+              </ul>
+            </div>
+            <div class="card" style="background: rgba(255,176,32,.10); border-color: rgba(255,176,32,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⚠️ Points faibles</div>
+              <ul class="feature-list">
+                <li class="negative">Clé mobile = module externe</li>
+                <li class="negative">Moins d’intégrations que Mews</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="https://www.cloudbeds.com/pricing/" target="_blank" rel="noreferrer">Voir les tarifs Cloudbeds</a>
+            <a class="btn ghost" href="https://www.youtube.com/watch?v=PzZXhrEuZJU" target="_blank" rel="noreferrer">Voir la démo vidéo</a>
+          </div>
+        </article>
+
+        <!-- ROOMRACCOON -->
+        <article class="card solution-card" style="border-left-color: rgba(39,174,96,.95);">
+          <div class="solution-title">
+            <h3>🥉 ROOMRACCOON</h3>
+            <span class="badge budget">Budget • FR</span>
+          </div>
+          <p class="muted"><b>Site officiel :</b> <a href="https://www.roomraccoon.fr" target="_blank" rel="noreferrer">roomraccoon.fr</a></p>
+
+          <div class="table-wrap" role="region" aria-label="Table fonctionnalités RoomRaccoon" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fonctionnalité</th>
+                  <th>Statut</th>
+                  <th>Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>IA compatible/intégré</td><td>✅ OUI</td><td>API ouverte + IA pricing</td></tr>
+                <tr><td>Check‑in/out online</td><td>✅ OUI</td><td>Pré‑check‑in web</td></tr>
+                <tr><td>Clé mobile sans app</td><td>⚠️ Add‑on</td><td>Via HotelBuddy (≈50€/mois)</td></tr>
+                <tr><td>Gestion multi‑sites</td><td>✅ OUI</td><td>Multi‑propriétés</td></tr>
+                <tr><td>Gestion clients/avis</td><td>✅ OUI</td><td>CRM, emails auto</td></tr>
+                <tr><td>Attribution chambres auto</td><td>✅ OUI</td><td>Règles + drag & drop</td></tr>
+                <tr><td>Channel manager</td><td>✅ INCLUS</td><td>Booking, Expedia, Airbnb</td></tr>
+                <tr><td>Revenue management</td><td>✅ OUI</td><td>Dynamic pricing + options avancées</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="price-box">
+            <div style="font-weight:900; margin-bottom:6px;">💰 Prix estimé (hôtel 30 chambres)</div>
+            <div>Plan Premium : <strong>360€/mois</strong></div>
+            <div>Clé mobile (HotelBuddy) : <strong>+50€/mois</strong></div>
+            <div>RaccoonRev Plus : <strong>+100€/mois</strong> (optionnel)</div>
+            <div class="hr"></div>
+            <div class="price-total">TOTAL : ~410–510€/mois</div>
+          </div>
+
+          <div class="comparison-grid" style="margin-top:14px;">
+            <div class="card" style="background: rgba(39,174,96,.10); border-color: rgba(39,174,96,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⭐ Points forts</div>
+              <ul class="feature-list">
+                <li>Très compétitif en prix</li>
+                <li>Support en français</li>
+                <li>Idéal hôtels 20‑50 chambres</li>
+              </ul>
+            </div>
+            <div class="card" style="background: rgba(255,176,32,.10); border-color: rgba(255,176,32,.20);">
+              <div style="font-weight:900; margin-bottom:8px;">⚠️ Points faibles</div>
+              <ul class="feature-list">
+                <li class="negative">Moins “premium”</li>
+                <li class="negative">Clé mobile en module externe</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="https://www.roomraccoon.com/pricing/" target="_blank" rel="noreferrer">Voir les tarifs RoomRaccoon</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="section" id="preuves">
+      <div class="section-head">
+        <h2>🎖️ Preuves que ça marche</h2>
+        <div class="kpi">Social proof + adoption</div>
+      </div>
+      <div class="section-body">
+        <div class="proof-grid">
+          <div class="proof"><strong>12 500+</strong>Propriétés utilisent Mews</div>
+          <div class="proof"><strong>150+ pays</strong>Cloudbeds opère globalement</div>
+          <div class="proof"><strong>300+ intégrations</strong>RoomRaccoon disponible</div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div style="font-weight:900; margin-bottom:10px;">Ce que disent les utilisateurs</div>
+          <div class="muted">“Cloudbeds nous a sauvé une grosse partie du temps administratif. Nos clients adorent le check‑in online.”</div>
+          <div class="hr"></div>
+          <div class="muted">“Mews Digital Key : expérience sans app, zéro friction.”</div>
+        </div>
+
+        <p class="muted" style="margin-top:14px;">Note : les chiffres ci‑dessus sont indicatifs et doivent être re‑vérifiés selon tes offres et pays.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="section" id="comparaison">
+      <div class="section-head">
+        <h2>📊 Comparaison directe</h2>
+        <div class="kpi">Lisible sur mobile (mode cartes)</div>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap" role="region" aria-label="Table comparaison" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>Critère</th>
+                <th>Cloudbeds ⭐</th>
+                <th>Mews</th>
+                <th>RoomRaccoon</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Budget / mois</b></td><td><b>560€</b></td><td>660€</td><td>410–510€</td></tr>
+              <tr><td><b>RMS inclus</b></td><td>✅ PIE (IA)</td><td>❌ Add‑on</td><td>✅ Basique</td></tr>
+              <tr><td><b>Clé mobile</b></td><td>⚠️ +60€</td><td>✅ Incluse</td><td>⚠️ +50€</td></tr>
+              <tr><td><b>Support FR</b></td><td>Possible</td><td>Anglais</td><td>✅ Excellent</td></tr>
+              <tr><td><b>Intégrations</b></td><td>350+</td><td>1000+</td><td>300+</td></tr>
+              <tr><td><b>Courbe apprentissage</b></td><td>Facile</td><td>Moyen</td><td>Facile</td></tr>
+              <tr><td><b>Idéal pour</b></td><td>PME 20–80 ch.</td><td>Haut de gamme</td><td>Budget serré</td></tr>
+              <tr><td><b>Note globale</b></td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="section" id="roi">
+      <div class="section-head">
+        <h2>🧮 Calculatrice ROI</h2>
+        <div class="kpi">Estimation rapide (indicative)</div>
+      </div>
+      <div class="section-body">
+        <div class="roi">
+          <p class="lead" style="margin:0;">Découvre une estimation de gain potentiel (année 1) avec Cloudbeds.</p>
+
+          <label for="rooms">Nombre de chambres</label>
+          <input type="number" id="rooms" value="30" min="10" max="500" />
+
+          <label for="price">Prix moyen par nuit (€)</label>
+          <input type="number" id="price" value="80" min="20" max="500" />
+
+          <label for="occupancy">Taux d’occupation actuel (%)</label>
+          <input type="number" id="occupancy" value="60" min="20" max="100" />
+
+          <div class="actions">
+            <button class="btn primary" type="button" onclick="calculateROI()">Calculer mon ROI 🚀</button>
+          </div>
+
+          <div id="resultBox" class="result" aria-live="polite">
+            <div style="font-weight:900; margin-bottom:8px;">📈 Résultats estimés (année 1)</div>
+            <div><b>Revenue actuel :</b> <span id="currentRevenue">0</span>€/an</div>
+            <div style="color: rgba(39,174,96,.95);"><b>+ 15% réservations directes :</b> +<span id="directBooking">0</span>€</div>
+            <div style="color: rgba(39,174,96,.95);"><b>+ 10% RevPAR (grâce IA) :</b> +<span id="revpar">0</span>€</div>
+            <div style="color: rgba(255,176,32,.95);"><b>- Coût Cloudbeds :</b> -<span id="cost">0</span>€</div>
+            <div class="hr"></div>
+            <div style="font-size:1.2rem; color: rgba(39,174,96,.98); font-weight:900;">
+              GAIN NET : <span id="netGain">0</span>€/an
+            </div>
+            <div class="muted" style="margin-top:6px;"><b>Payback :</b> <span id="payback">0</span> mois (approx.)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section class="section" id="videos">
+      <div class="section-head">
+        <h2>📹 Voir en action</h2>
+        <div class="kpi">Démos produits</div>
+      </div>
+      <div class="section-body">
+        <div class="card">
+          <div style="font-weight:900;">Démo Cloudbeds (10 min)</div>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/PzZXhrEuZJU" allowfullscreen title="Démo Cloudbeds"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:900;">Mews Guest Portal & Digital Key (1 min)</div>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/0v0mdy-ls-8" allowfullscreen title="Mews Digital Key"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:900;">Mews Product Tour (10 min)</div>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/hHxawocmyyw" allowfullscreen title="Mews Product Tour"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section class="section" id="reco">
+      <div class="section-head">
+        <h2>🏆 Recommandation finale</h2>
+        <div class="kpi">Choix pragmatique</div>
+      </div>
+      <div class="section-body">
+        <div class="card solution-card" style="border-left-color: var(--gold);">
+          <div class="solution-title">
+            <h3>👉 Choisis Cloudbeds (meilleur choix global)</h3>
+            <span class="badge star">ROI / Complétude</span>
+          </div>
+          <ul class="feature-list">
+            <li><b>RMS IA inclus</b> = moins d’add‑ons à payer</li>
+            <li>Rapport qualité/prix solide</li>
+            <li>Parfait pour hôtels 20–80 chambres</li>
+            <li>Tout‑en‑un → moins de fournisseurs à gérer</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="https://www.cloudbeds.com" target="_blank" rel="noreferrer">Aller sur Cloudbeds ➜</a>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <div class="card">
+            <div style="font-weight:900;">Mews (Premium)</div>
+            <p class="muted" style="margin:8px 0 0;">Si tu veux le meilleur “look & feel” et une expérience ultra‑tech pour du haut de gamme.</p>
+            <div class="actions">
+              <a class="btn" href="https://www.mews.com" target="_blank" rel="noreferrer">Voir Mews</a>
+            </div>
+          </div>
+          <div class="card">
+            <div style="font-weight:900;">RoomRaccoon (Budget)</div>
+            <p class="muted" style="margin:8px 0 0;">Si tu dois serrer le budget, avec support en français et déploiement simple.</p>
+            <div class="actions">
+              <a class="btn" href="https://www.roomraccoon.fr" target="_blank" rel="noreferrer">Voir RoomRaccoon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section class="section" id="sources">
+      <div class="section-head">
+        <h2>📚 Sources & références</h2>
+        <div class="kpi">Liens officiels & comparatifs</div>
+      </div>
+      <div class="section-body">
+        <div class="comparison-grid">
+          <div class="card">
+            <div style="font-weight:900; margin-bottom:10px;">Sites officiels & tarifs</div>
+            <ul class="feature-list">
+              <li><a href="https://www.mews.com/en/pricing" target="_blank" rel="noreferrer">Mews – Pricing & Features</a></li>
+              <li><a href="https://www.cloudbeds.com/pricing/" target="_blank" rel="noreferrer">Cloudbeds – Pricing</a></li>
+              <li><a href="https://www.roomraccoon.com/pricing/" target="_blank" rel="noreferrer">RoomRaccoon – Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:900; margin-bottom:10px;">Avis & comparatifs</div>
+            <ul class="feature-list">
+              <li><a href="https://www.capterra.com" target="_blank" rel="noreferrer">Capterra – Reviews PMS</a></li>
+              <li><a href="https://www.hotelminder.com/best-hotel-property-management-systems" target="_blank" rel="noreferrer">HotelMinder – Best PMS</a></li>
+              <li><a href="https://lyrasystem.com/en/insights/hotel-and-campsite-pms-comparison/" target="_blank" rel="noreferrer">Lyra System – PMS comparison</a></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:900; margin-bottom:10px;">Modules complémentaires</div>
+            <ul class="feature-list">
+              <li><a href="https://www.hotelbuddy.eu/mobilekey" target="_blank" rel="noreferrer">HotelBuddy – Mobile Key</a></li>
+              <li><a href="https://www.canarytechnologies.com" target="_blank" rel="noreferrer">Canary Technologies – Digital Key</a></li>
+              <li><a href="https://www.revinate.com" target="_blank" rel="noreferrer">Revinate – Guest Feedback & CRM</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div><b>Document préparé :</b> 15 janvier 2026 • <b>Statut :</b> Confidentiel – Pour Sébastien</div>
+      <div style="margin-top:10px;" class="muted">“En 2026, le choix n’est pas ‘est‑ce que ça existe ?’, mais ‘quelle stack est la plus adaptée à mon parc hôtelier ?’”</div>
+      <div style="margin-top:12px;"><a href="#top">⬆️ Revenir en haut</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // 1) Rend les tables réellement "responsive" :
+    //    - Sur mobile, on cache THEAD et on affiche chaque TR comme une carte
+    //    - Chaque TD reçoit automatiquement data-label = texte du TH correspondant
+    (function attachTableLabels(){
+      const tables = document.querySelectorAll("table");
+      tables.forEach(table => {
+        const heads = Array.from(table.querySelectorAll("thead th")).map(th => th.textContent.trim());
+        if (!heads.length) return;
+        table.querySelectorAll("tbody tr").forEach(tr => {
+          Array.from(tr.children).forEach((cell, i) => {
+            if (!cell.getAttribute("data-label")) {
+              cell.setAttribute("data-label", heads[i] || "");
+            }
+          });
+        });
+      });
+    })();
+
+    // 2) ROI calculator (identique logique à la version initiale, juste plus propre visuellement)
+    function calculateROI() {
+      const rooms = parseInt(document.getElementById('rooms').value || "0", 10);
+      const price = parseInt(document.getElementById('price').value || "0", 10);
+      const occupancy = parseInt(document.getElementById('occupancy').value || "0", 10);
+
+      const daysPerYear = 365;
+      const currentRevenue = rooms * price * (occupancy / 100) * daysPerYear;
+
+      const directBookingGain = currentRevenue * 0.02;
+      const revparGain = currentRevenue * 0.10;
+
+      const monthlyCloudbed = 560; // 500€ PMS + 60€ clé mobile
+      const costPerYear = monthlyCloudbed * 12;
+
+      const netGain = directBookingGain + revparGain - costPerYear;
+
+      const totalGainPerMonth = (directBookingGain + revparGain) / 12;
+      const payback = totalGainPerMonth > 0 ? Math.ceil(costPerYear / totalGainPerMonth) : 0;
+
+      const fmt = (n) => (isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) : "0");
+
+      document.getElementById('currentRevenue').textContent = fmt(currentRevenue);
+      document.getElementById('directBooking').textContent = fmt(directBookingGain);
+      document.getElementById('revpar').textContent = fmt(revparGain);
+      document.getElementById('cost').textContent = fmt(costPerYear);
+      document.getElementById('netGain').textContent = fmt(netGain);
+      document.getElementById('payback').textContent = Math.min(payback, 12);
+
+      document.getElementById('resultBox').classList.add('show');
+    }
+  </script>
+</body>
+</html>
