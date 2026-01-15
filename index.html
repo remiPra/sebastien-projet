@@ -29,6 +29,32 @@
             overflow: hidden;
         }
 
+        /* Navigation */
+        .nav {
+            background: #1a4d75;
+            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
         /* Header */
         .header {
             background: linear-gradient(135deg, #1e5f8f 0%, #4aa3df 100%);
@@ -398,6 +424,12 @@
 </head>
 <body>
     <div class="container">
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="#" class="active">📄 Dossier principal</a>
+            <a href="etude.html">🔍 Étude complète →</a>
+        </nav>
+
         <!-- Header -->
         <div class="header">
             <h1>Solutions PMS Hôtelières 2026</h1>
